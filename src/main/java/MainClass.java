@@ -26,7 +26,7 @@ public class MainClass {
         googleLoginPage.enterLogin(login);
         googleLoginPage.enterPassword(password);
         googleMainPage.isLoggedIn(userFirstName, userSecondName, login.toLowerCase());
-        System.out.println("Успешно!");
+        System.out.println("Успешно!!!!");
         driver.quit();
     }
 }
