@@ -6,7 +6,7 @@ public class MainClass {
 
      static WebDriver driver;
      static String ChromeDriverProperty = "webdriver.chrome.driver";
-     static String ChromeDriverPath = "C:\\Users\\a.staroverov\\IdeaProjects\\JavaAutotestsLearning\\drivers\\chromedriver.exe";
+     static String ChromeDriverPath = System.getProperty("user.dir") + "\\drivers\\chromedriver.exe";
      static WebDriverWait wait;
 
 
