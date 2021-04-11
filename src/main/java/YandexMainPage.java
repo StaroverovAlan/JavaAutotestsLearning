@@ -27,7 +27,6 @@ public class YandexMainPage  {
 
     public void isLoggedIn(String userLogin) {
         By checkLoggedInAccount = By.xpath("//span[@class=\"username__first-letter\"][contains(text(), \"" + userLogin.charAt(0) + "\")]");
-        System.out.println(checkLoggedInAccount);
         wait.until(ExpectedConditions.presenceOfElementLocated(findTitle));
         wait.until(ExpectedConditions.presenceOfElementLocated(checkLoggedInAccount));
     }
