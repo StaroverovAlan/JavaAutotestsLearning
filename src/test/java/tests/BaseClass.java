@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 public class BaseClass {
 
     static WebDriver driver;
@@ -18,6 +20,7 @@ public class BaseClass {
         System.setProperty(ChromeDriverProperty, ChromeDriverPath);
         driver = new ChromeDriver();
         wait = (new WebDriverWait(driver, 5));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @After

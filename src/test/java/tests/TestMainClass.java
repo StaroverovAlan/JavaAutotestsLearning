@@ -16,10 +16,11 @@ public class TestMainClass extends BaseClass {
         yandexMainPage.openYandexPage();
         yandexMainPage.goToLoginPage();
         yandexLoginPage.isEnterButtonEnabled();
-        yandexLoginPage.isloginFieldDisplayed();
+        yandexLoginPage.isLoginFieldDisplayed();
         yandexLoginPage.enterLogin(login);
         yandexLoginPage.isPasswordFieldEnabled();
         yandexLoginPage.enterPassword(password);
+        yandexLoginPage.isSkipButtonDisplayed();
         Assert.assertTrue("Что-то точно пошло не так, неуспешный вход в аккаунт",yandexMainPage.isLoggedIn(login));
     }
 }
