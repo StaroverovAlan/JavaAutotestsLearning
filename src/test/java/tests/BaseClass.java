@@ -1,10 +1,11 @@
 package tests;
 
-import org.junit.After;
-import org.junit.Before;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,7 +16,7 @@ public class BaseClass {
     static String ChromeDriverProperty = "webdriver.chrome.driver";
     static String ChromeDriverPath = System.getProperty("user.dir") + "\\drivers\\chromedriver.exe";
 
-    @Before
+    @BeforeClass
     public void testSetup() {
         System.setProperty(ChromeDriverProperty, ChromeDriverPath);
         driver = new ChromeDriver();
@@ -23,7 +24,7 @@ public class BaseClass {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @After
+    @AfterClass
     public void finishTest() {
         driver.quit();
     }

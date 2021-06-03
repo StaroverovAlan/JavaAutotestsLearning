@@ -1,4 +1,6 @@
 # Intellij
+allure-results/
+.allure/
 .idea/
 *.iml
 *.iws

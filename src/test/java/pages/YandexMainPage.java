@@ -1,17 +1,18 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
-public class YandexMainPage  {
+public class YandexMainPage {
 
     private static WebDriver driver;
     private static WebDriverWait wait;
     private static String yandexWebPage = "https://www.yandex.ru/";
-    private static By findTitle = By.xpath("//title[contains(text(), \"Яндекс\")]");
 
     public YandexMainPage(WebDriver _driver, WebDriverWait _wait) {
         driver = _driver;
@@ -22,23 +23,25 @@ public class YandexMainPage  {
     @FindBy(xpath = "//a/div[contains(text(), \"Войти\")]")
     private WebElement enterButton;
 
+    @FindBy(xpath = "//span[@class=\"username__first-letter\"]")
+    private WebElement loggedAccount;
+
+    @Step("Переход на главную страницу яндекаса")
     public void openYandexPage() {
         driver.get(yandexWebPage);
     }
 
+    @Step("Переход на страницу логина")
     public void goToLoginPage() {
         wait.until(ExpectedConditions.elementToBeClickable(enterButton));
         enterButton.click();
     }
 
-    public boolean isLoggedIn(String userLogin) {
-        By checkLoggedInAccount = By.xpath("//span[@class=\"username__first-letter\"][contains(text(), \"" + userLogin.charAt(0) + "\")]");
-        try {
-            driver.findElement(checkLoggedInAccount);
-        }
-        catch (NoSuchElementException e) {
-            return false;
-        }
-        return true;
+    @Step("Провека на успешность входа в аккаунт")
+    public void isLoggedIn(String userLogin) {
+        String loggedAccountText = loggedAccount.getText();
+        Assert.assertEquals(loggedAccountText.charAt(0), userLogin.charAt(0),
+                "\"Что-то точно пошло не так, неуспешный вход в аккаунт\", "
+                        + loggedAccountText.charAt(0) + " != " + userLogin.charAt(0));
     }
 }
